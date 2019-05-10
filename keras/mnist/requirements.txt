@@ -1,0 +1,6 @@
+tensorflow
+keras
+python-mnist
+tqdm
+numpy
+
