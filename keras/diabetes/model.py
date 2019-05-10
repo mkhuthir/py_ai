@@ -33,13 +33,17 @@ model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']
 
 # Fit the model
 print('Fitting Model')
-history = model.fit(X, Y, validation_split=0.33, epochs=200, batch_size=20, verbose=0)
+history = model.fit(X, Y, validation_split=0.40, epochs=500, batch_size=10, verbose=0)
 
 # list all data in history
 print('History:',history.history.keys())
 
 # Print model summery
 print(model.summary())
+
+# Print model accuracy
+acc = model.evaluate(X,Y)
+print('accuracy:', acc[1] * 100, '%')
 
 # plot model history
 f, ax = plt.subplots(1, 2, figsize=(12,6))
