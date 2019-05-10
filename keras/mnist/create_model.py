@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from load_mnist_data import x_test, x_train, y_test, y_train
+from load_data import x_test, x_train, y_test, y_train
 from keras.callbacks import ModelCheckpoint
 from keras.layers import (Activation, Conv2D, Dense, Dropout, Flatten, MaxPooling2D)
 from keras.models import Sequential, load_model
@@ -73,18 +73,18 @@ def evaluate_model():
 # The following is to suppress TensorFlow Warnings
 tf.logging.set_verbosity(tf.logging.ERROR)
 
-print('\nInitialize the model\n')
+print('\nInitialize the model')
 initial_model = create_model()
 
-print('\nCompile the model\n')
+print('Compile the model')
 compiled_model = compile_model(initial_model)
 
-print('\nTrain the model\n')
+print('Train the model')
 trained_model = fit_model(compiled_model)
 
-print('\nEvaluating the model...\n')
+print('\nEvaluating the model...')
 train_score, test_score = evaluate_model()
 
-print('\nPercentage predicted correctly:\n')
+print('\nPercentage predicted correctly:')
 print('Training:', train_score[1] * 100, '%')
 print('Testing:', test_score[1] * 100, '%')
