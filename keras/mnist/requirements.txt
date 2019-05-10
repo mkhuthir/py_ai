@@ -3,4 +3,4 @@ keras
 python-mnist
 tqdm
 numpy
-
+requests
