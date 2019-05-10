@@ -66,22 +66,25 @@ def plot_history(history):
     """
     Plot model accuracy and loss histories
     """
+    # plot model history
+    f, ax = plt.subplots(1, 2, figsize=(12,6))
+
     # Plot training & validation accuracy values
-    plt.plot(history.history['categorical_accuracy'])
-    plt.plot(history.history['val_categorical_accuracy'])
-    plt.title('Model accuracy')
-    plt.ylabel('Accuracy')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
-    plt.show()
+    ax[0].plot(history.history['categorical_accuracy'])
+    ax[0].plot(history.history['val_categorical_accuracy'])
+    ax[0].set_title('Model accuracy')
+    ax[0].set_ylabel('Accuracy')
+    ax[0].set_xlabel('Epoch')
+    ax[0].legend(['Train', 'Test'], loc='upper left')
 
     # Plot training & validation loss values
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('Model loss')
-    plt.ylabel('Loss')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
+    ax[1].plot(history.history['loss'])
+    ax[1].plot(history.history['val_loss'])
+    ax[1].set_title('Model loss')
+    ax[1].set_ylabel('Loss')
+    ax[1].set_xlabel('Epoch')
+    ax[1].legend(['Train', 'Test'], loc='upper left')
+
     plt.show()
 
 

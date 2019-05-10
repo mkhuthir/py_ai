@@ -41,20 +41,22 @@ print('History:',history.history.keys())
 # Print model summery
 print(model.summary())
 
+# plot model history
+f, ax = plt.subplots(1, 2, figsize=(12,6))
+
 # summarize history for accuracy
-plt.plot(history.history['acc'])
-plt.plot(history.history['val_acc'])
-plt.title('model accuracy')
-plt.ylabel('accuracy')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper left')
-plt.show()
+ax[0].plot(history.history['acc'])
+ax[0].plot(history.history['val_acc'])
+ax[0].set_title('model accuracy')
+ax[0].set_ylabel('accuracy')
+ax[0].set_xlabel('epoch')
+ax[0].legend(['train', 'test'], loc='upper left')
 
 # summarize history for loss
-plt.plot(history.history['loss'])
-plt.plot(history.history['val_loss'])
-plt.title('model loss')
-plt.ylabel('loss')
-plt.xlabel('epoch')
-plt.legend(['train', 'test'], loc='upper left')
+ax[1].plot(history.history['loss'])
+ax[1].plot(history.history['val_loss'])
+ax[1].set_title('model loss')
+ax[1].set_ylabel('loss')
+ax[1].set_xlabel('epoch')
+ax[1].legend(['train', 'test'], loc='upper left')
 plt.show()
