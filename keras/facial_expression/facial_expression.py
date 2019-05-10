@@ -9,9 +9,11 @@ target = ['angry','disgust','fear','happy','sad','surprise','neutral']
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 # load face cascade classifier (for face detection)
-faceCascade = cv2.CascadeClassifier('../xml/haarcascade_frontalface_alt2.xml')
+faceCascade = cv2.CascadeClassifier('./xml/haarcascade_frontalface_default.xml')
+
 # load keras model (for face classification)
-model = load_model('keras_model/model_5-49-0.62.hdf5')
+model = load_model('./models/model_5-49-0.62.hdf5')
+# print(model.summary())
 
 # start video capture
 video_capture = cv2.VideoCapture(0)
