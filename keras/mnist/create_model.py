@@ -5,6 +5,7 @@ from keras.callbacks import ModelCheckpoint
 from keras.layers import (Activation, Conv2D, Dense, Dropout, Flatten, MaxPooling2D)
 from keras.models import Sequential, load_model
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 def create_model():
     """
@@ -52,14 +53,37 @@ def fit_model(model):
         save_best_only=True,
         mode='max')
 
-    model.fit(
+    history = model.fit(
         x_train,
         y_train,
-        epochs=5,
+        epochs=10,
         batch_size=100,
         validation_split=0.25,
         callbacks=[checkpoint])
-    return model
+    return model, history
+
+def plot_history(history):
+    """
+    Plot model accuracy and loss histories
+    """
+    # Plot training & validation accuracy values
+    plt.plot(history.history['categorical_accuracy'])
+    plt.plot(history.history['val_categorical_accuracy'])
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+
+    # Plot training & validation loss values
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Model loss')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+
 
 def evaluate_model():
     """
@@ -80,7 +104,11 @@ print('Compile the model')
 compiled_model = compile_model(initial_model)
 
 print('Train the model')
-trained_model = fit_model(compiled_model)
+trained_model, history = fit_model(compiled_model)
+
+print('Showing model training history')
+# if required use print(history.history.keys()) to list all data in history
+plot_history(history)
 
 print('\nEvaluating the model...')
 train_score, test_score = evaluate_model()
