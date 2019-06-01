@@ -12,7 +12,7 @@ print(a)
 b = torch.zeros(5)
 print(b)
 
-# Create a Tensor with custom values
+# Create a Tensor from data
 c = torch.tensor([1.0, 2.0, 3.0, 4.0, 5.0])
 print(c)
 
@@ -42,3 +42,7 @@ g = torch.tensor([
                 ])
 print(g)
  
+# Construct a 3x3x3 matrix, uninitialized:
+h = torch.empty(3, 3, 3)
+print(h)
+
