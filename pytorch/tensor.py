@@ -16,17 +16,29 @@ print(b)
 c = torch.tensor([1.0, 2.0, 3.0, 4.0, 5.0])
 print(c)
 
+# Create a 2D Tensor with just zeros 
 print("\n2D Tensors")
 d = torch.zeros(3,2)
 print(d)
 
+# Create a 2D Tensor with just ones
 e = torch.ones(3,2)
 print(e)
 
-f = torch.tensor([[1.0, 2.0],[3.0, 4.0]])
+# Create a 2D Tensor with random values 
+f = torch.rand(5,5)
 print(f)
 
+# Create a 3D Tensor with custom values
 print("\n3D Tensors")
-g = torch.tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
+g = torch.tensor([
+                    [   [1, 2],
+                        [3, 4]
+                    ],
+
+                    [   [5, 6], 
+                        [7, 8]
+                    ]
+                ])
 print(g)
  
