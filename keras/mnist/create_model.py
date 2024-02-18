@@ -98,7 +98,7 @@ def evaluate_model():
     return train_score, test_score
 
 # The following is to suppress TensorFlow Warnings
-tf.logging.set_verbosity(tf.logging.ERROR)
+# tf.logging.set_verbosity(tf.logging.ERROR)
 
 print('\nInitialize the model')
 initial_model = create_model()
