@@ -3,6 +3,6 @@
 # Feb 2024
 
 import tensorflow as tf
-print("TensorFlow version:", tf.__version__)
+print("TensorFlow version is {}".format(tf.__version__))
 
 
