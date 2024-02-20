@@ -1,0 +1,33 @@
+Upgrade your Ubuntu
+
+    sudo apt update
+    sudo apt upgrade
+
+List the recommended NVIDIA drivers
+
+    sudo apt install ubuntu-drivers-common
+    sudo ubuntu-drivers devices
+
+Install driver
+
+    * see below if you want automatic installation of drivers from CUDA toolkit
+    sudo apt install nvidia-driver-xxx
+    sudo reboot now
+
+Check the driver installation
+
+    nvidia-smi
+
+Install CUDA toolkit Ubuntu (including drivers)
+
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    sudo apt-get update
+    sudo apt-get -y install cuda
+    sudo reboot now
+
+Test the CUDA toolkit
+
+    nvcc -V
+
+
