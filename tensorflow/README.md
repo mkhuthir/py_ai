@@ -3,7 +3,7 @@
 To install Tensorflow for Python3:
 
 ```bash
-pip3 install --user --upgrade tensorflow
+pip3 install --upgrade tensorflow tensorrt
 ```
 
 To verify the installation:
