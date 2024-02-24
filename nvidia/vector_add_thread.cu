@@ -8,39 +8,43 @@
 #define N 10000000
 #define MAX_ERR 1e-6
 
-__global__ 
-void vector_add(float *out, float *a, float *b, int n) {
-    for(int i = 0; i < n; i++){
+__global__ void 
+vector_add(float *out, float *a, float *b, int n) {
+    int index = threadIdx.x;
+    int stride = blockDim.x;
+
+    for(int i = index; i < n; i += stride){
         out[i] = a[i] + b[i];
     }
 }
 
 int main(){
     float *a, *b, *out;
-    float *d_a, *d_b, *d_out;
+    float *d_a, *d_b, *d_out; 
 
-    // Allocate memory (CPU)
+    // Allocate host memory
     a   = (float*)malloc(sizeof(float) * N);
     b   = (float*)malloc(sizeof(float) * N);
     out = (float*)malloc(sizeof(float) * N);
 
-    // Initialize array (CPU)
+    // Initialize host arrays
     for(int i = 0; i < N; i++){
-        a[i] = 1.0f; b[i] = 2.0f;
+        a[i] = 1.0f;
+        b[i] = 2.0f;
     }
 
-    // Allocate device memory (GPU)
-    cudaMalloc((void**)&d_a  , sizeof(float) * N);
-    cudaMalloc((void**)&d_b  , sizeof(float) * N);
+    // Allocate device memory 
+    cudaMalloc((void**)&d_a, sizeof(float) * N);
+    cudaMalloc((void**)&d_b, sizeof(float) * N);
     cudaMalloc((void**)&d_out, sizeof(float) * N);
 
     // Transfer data from host to device memory (CPU>GPU)
-    cudaMemcpy(d_a  , a,   sizeof(float) * N, cudaMemcpyHostToDevice);
-    cudaMemcpy(d_b  , b,   sizeof(float) * N, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_a, a, sizeof(float) * N, cudaMemcpyHostToDevice);
+    cudaMemcpy(d_b, b, sizeof(float) * N, cudaMemcpyHostToDevice);
 
-    // Executing kernel (1 Thread)
-    vector_add<<<1,1>>>(d_out, d_a, d_b, N);
-
+    // Executing kernel (256 Threads)
+    vector_add<<<1,256>>>(d_out, d_a, d_b, N);
+    
     // Transfer data back to host memory
     cudaMemcpy(out, d_out, sizeof(float) * N, cudaMemcpyDeviceToHost);
 
@@ -51,13 +55,13 @@ int main(){
 
     printf("PASSED\n");
 
-    // Cleanup after kernel execution
+    // Deallocate device memory
     cudaFree(d_a);
     cudaFree(d_b);
     cudaFree(d_out);
 
     // Deallocate host memory
-    free(a);
-    free(b);
+    free(a); 
+    free(b); 
     free(out);
 }
