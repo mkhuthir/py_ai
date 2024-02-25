@@ -2,6 +2,9 @@
 # Muthanna Alwahash
 # Feb 2024
 
+# Video explaining this example
+# https://www.youtube.com/watch?v=bemDFpNooA8
+
 import tensorflow as tf
 print(tf.__version__)
 
@@ -14,9 +17,9 @@ training_images  = training_images / 255.0
 test_images = test_images / 255.0
 
 # Design the model
-model = tf.keras.models.Sequential([tf.keras.layers.Flatten(), 
-                                    tf.keras.layers.Dense(512, activation=tf.nn.relu), 
-                                    tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
+model = tf.keras.models.Sequential([tf.keras.layers.Flatten(input_shape=(28,28)),           # input images are 28x28 pixels
+                                    tf.keras.layers.Dense(512, activation=tf.nn.relu),      # hidden layers
+                                    tf.keras.layers.Dense(10, activation=tf.nn.softmax)])   # output are 10 classes (fashion types)
 
 # Compile the model
 model.compile(optimizer = 'adam',

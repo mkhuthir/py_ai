@@ -6,8 +6,10 @@ import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 
-# Define and compile the neural network
+# Define the neural network
 model = tf.keras.Sequential([keras.layers.Dense(units=1, input_shape=[1])])
+
+# Compile model
 model.compile(optimizer='sgd', loss='mean_squared_error')
 
 # Provide the data (Y=3X+1 !)
