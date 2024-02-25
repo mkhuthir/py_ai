@@ -2,16 +2,16 @@
 # Muthanna Alwahash
 # Feb 2024
 
-import tensorflow as tf
-import numpy as np
-import matplotlib.cm as cm
-import matplotlib.pyplot as plt
-
 # MNIST is the equivalent Hello World of image analysis. 
 # It consists of hand written numbers, 0-9, in 28x28 pixel squares.
 # Each gray-scale pixel contains an integer 0-255 to indicate darkness,
 # with 0 white and 255 black. There are about 60,000 training records, 
 # and about 10,000 test records.
+
+import tensorflow as tf
+import numpy as np
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
 
 # Load data
 mnist = tf.keras.datasets.mnist  
@@ -57,21 +57,26 @@ model = tf.keras.models.Sequential([
 ])
  
 # Compile Model
-model.compile(optimizer='adam',
-              loss='sparse_categorical_crossentropy',
-              metrics=['accuracy'])
+model.compile(optimizer ='adam',
+              loss      ='sparse_categorical_crossentropy',
+              metrics   =['accuracy'])
 
 # Fit Model
+print("\n\n")
 print("Fitting Model...")
 model.fit(x_train, y_train, epochs=4)
 
 # Evaluate Model
+print("\n\n")
 print("Testing model...")
 model.evaluate(x_test, y_test)
 
 # Generate predictions for test set
+print("\n\n")
+print("Using model...")
 predictions = model.predict(x_test)
 
+# Select one test sample and show it
 i = 88
 
 print("Predictions : "  , predictions[i])
