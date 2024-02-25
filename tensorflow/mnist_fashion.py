@@ -6,11 +6,41 @@
 # https://www.youtube.com/watch?v=bemDFpNooA8
 
 import tensorflow as tf
-print(tf.__version__)
+import numpy as np
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+
 
 # Load the Fashion MNIST data
 mnist = tf.keras.datasets.fashion_mnist
 (training_images, training_labels), (test_images, test_labels) = mnist.load_data()
+
+# show data shapes
+print("\n\n")
+print("Training Data input shape  :",training_images.shape)
+print("Training Data output shape :",training_labels.shape)
+print("Testing Data input shape   :",test_images.shape)
+print("Testing Data output shape  :",test_labels.shape)
+
+# Use Matplotlib to visualize one record
+plt.imshow(training_images[42].reshape(28, 28), cmap=cm.Greys)
+plt.show()
+
+# Plot a bunch of records to see sample data
+images = training_images[0:18]
+fig, axes = plt.subplots(3, 6, figsize=[9,5])
+
+for i, ax in enumerate(axes.flat):
+    ax.imshow(training_images[i].reshape(28, 28), cmap=cm.Greys)
+    ax.set_xticks([])
+    ax.set_yticks([])
+plt.show()
+
+# Show distribution of training data labels
+counts = np.bincount(training_labels)
+nums = np.arange(len(counts))
+plt.bar(nums, counts)
+plt.show()
 
 # Normalize data (0-255) > (0-1)
 training_images  = training_images / 255.0
@@ -36,5 +66,11 @@ model.evaluate(test_images, test_labels)
 classifications = model.predict(test_images)
 
 # print results
-print(classifications[0])
-print(test_labels[0])
+
+i = 1
+
+print("Predictions : "  , classifications[i])
+print("Predicted No. : ", np.argmax(classifications[i]))
+
+plt.imshow(test_images[i].reshape(28, 28), cmap=cm.Greys)
+plt.show()
