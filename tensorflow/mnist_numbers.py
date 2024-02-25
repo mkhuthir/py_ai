@@ -7,8 +7,6 @@ import numpy as np
 import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 
-tf.get_logger().setLevel('ERROR')
-
 # MNIST is the equivalent Hello World of image analysis. 
 # It consists of hand written numbers, 0-9, in 28x28 pixel squares.
 # Each gray-scale pixel contains an integer 0-255 to indicate darkness,
