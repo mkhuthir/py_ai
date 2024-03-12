@@ -10,7 +10,7 @@ import numpy
 import tensorflow as tf
 
 # The following is to suppress TensorFlow Warnings
-tf.logging.set_verbosity(tf.logging.ERROR)
+#tf.logging.set_verbosity(tf.logging.ERROR)
 
 # load pima indians dataset
 print('\nLoading data from csv file')
