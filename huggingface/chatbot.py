@@ -6,6 +6,7 @@
 from transformers import Conversation
 from transformers import pipeline
 from transformers.utils import logging
+import gc
 
 logging.set_verbosity_error()
 
@@ -35,3 +36,6 @@ print(conversation)
 conversation = chatbot(conversation)
 print(conversation)
 
+# free memory and garbage collect
+del translator
+gc.collect()
