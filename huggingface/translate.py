@@ -27,7 +27,7 @@ text_translated = translator(text,
                              src_lang="eng_Latn",
                              tgt_lang="arz_Arab")
 
-text_translated
+print (text_translated)
 
 # free memory and garbage collect
 del translator

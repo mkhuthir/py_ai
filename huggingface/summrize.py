@@ -27,7 +27,7 @@ summary = summarizer(text,
                      min_length=10,
                      max_length=100)
 
-summary
+print(summary)
 
 # free memory and garbage collect
 del summarizer
