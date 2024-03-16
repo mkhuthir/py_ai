@@ -30,5 +30,5 @@ summary = summarizer(text,
 summary
 
 # free memory and garbage collect
-del translator
+del summarizer
 gc.collect()

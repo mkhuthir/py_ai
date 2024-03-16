@@ -13,5 +13,5 @@ logging.set_verbosity_error()
 
 
 # free memory and garbage collect
-del translator
+# del xxxx
 gc.collect()

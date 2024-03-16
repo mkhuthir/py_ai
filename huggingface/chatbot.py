@@ -37,5 +37,5 @@ conversation = chatbot(conversation)
 print(conversation)
 
 # free memory and garbage collect
-del translator
+del chatbot
 gc.collect()
