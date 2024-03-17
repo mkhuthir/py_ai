@@ -14,7 +14,7 @@ from datasets import load_dataset, load_from_disk
 # This dataset is a collection of different sounds of 5 seconds
 # dataset = load_dataset("ashraq/esc50",
 #                       split="train[0:10]")
-dataset = load_from_disk("./models/ashraq/esc50/train")
+dataset = load_from_disk("/ashraq/esc50/train")
 
 
 audio_sample = dataset[0]
