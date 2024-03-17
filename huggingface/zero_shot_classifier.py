@@ -26,5 +26,5 @@ print(classification['labels'])
 print(classification['scores'])
 
 # free memory and garbage collect
-# del xxxx
+del zero_shot_classifier
 gc.collect()
