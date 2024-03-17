@@ -4,7 +4,7 @@
 
 import tensorflow as tf
 
-print("\nPrinting info for tf module:....\n")
+print("\n\nPrinting info for tf module:....\n")
 
 print("Package :",tf.__package__)
 print("Name    :",tf.__name__)
