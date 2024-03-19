@@ -1,0 +1,5 @@
+safetensors			# a safe and fast file format for storing and loading tensors
+torch				# PyTorch
+tensorflow[and-cuda]		# Google Tensorflow with NVIDIA CUDA support
+transformers			# HuggingFace transformers
+
