@@ -1,5 +1,22 @@
+# foundation
+matplotlib
+numpy
+pandas
 safetensors			# a safe and fast file format for storing and loading tensors
 torch				# PyTorch
+
+# Sci
+scikit-learn
+scipy
+
+# OpenAI
+openai
+openai-whisper
+
+# Google AI
 tensorflow[and-cuda]		# Google Tensorflow with NVIDIA CUDA support
+tensorrt
+
+# Huggingface
 transformers			# HuggingFace transformers
 
