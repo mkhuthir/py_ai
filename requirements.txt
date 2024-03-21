@@ -3,8 +3,32 @@ matplotlib
 numpy
 pandas
 
-# PyTorch
-torch				# PyTorch
+# NVIDIA CUDA 12
+--extra-index-url https://pypi.org/simple
+nvidia-cuda-runtime-cu12
+nvidia-cuda-cupti-cu12
+nvidia-cuda-nvcc-cu12
+nvidia-cuda-opencl-cu12
+nvidia-cuda-nvrtc-cu12
+nvidia-cublas-cu12
+nvidia-cuda-sanitizer-api-cu12
+nvidia-cufft-cu12
+nvidia-curand-cu12
+nvidia-cusolver-cu12
+nvidia-cusparse-cu12
+nvidia-npp-cu12
+nvidia-nvfatbin-cu12
+nvidia-nvjitlink-cu12
+nvidia-nvjpeg-cu12
+nvidia-nvml-dev-cu12
+nvidia-nvtx-cu12
+tensorrt
+
+# PyTorch + CUDA 11.8
+--index-url https://download.pytorch.org/whl/cu118
+torch 
+torchvision 
+torchaudio 
 
 # Sci
 scikit-learn
@@ -17,9 +41,6 @@ openai-whisper
 # Google AI
 tensorflow[and-cuda]		# Google Tensorflow with NVIDIA CUDA support
 google-cloud-aiplatform		# Google Cloud AI
-
-# NVIDIA
-tensorrt			#TesnorRT
 
 # Huggingface
 safetensors			# a safe and fast file format for storing and loading tensors
