@@ -12,7 +12,8 @@ logging.set_verbosity_error()
 
 summarizer = pipeline(task="summarization",
                       model="facebook/bart-large-cnn",
-                      torch_dtype=torch.bfloat16)
+                      torch_dtype=torch.bfloat16,
+                      device=0)
 
 text = """Paris is the capital and most populous city of France, with
           an estimated population of 2,175,601 residents as of 2018,

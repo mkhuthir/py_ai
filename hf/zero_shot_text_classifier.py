@@ -11,7 +11,8 @@ logging.set_verbosity_error()
 
 zero_shot_classifier = pipeline(
     "zero-shot-classification",
-    model="facebook/bart-large-mnli")
+    model="facebook/bart-large-mnli",
+    device=0)
 
 sequence_to_classify = "one day I will see the world"
 candidate_labels = ['travel', 'cooking', 'dancing']

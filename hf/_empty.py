@@ -5,7 +5,6 @@
 
 from transformers import pipeline 
 from transformers.utils import logging
-import torch
 import gc
 
 logging.set_verbosity_error()

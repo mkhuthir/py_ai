@@ -11,7 +11,8 @@ import gc
 logging.set_verbosity_error()
 
 chatbot = pipeline(task="conversational",
-                   model="facebook/blenderbot-400M-distill")
+                   model="facebook/blenderbot-400M-distill",
+                   device=0)
 
 user_message = """
 What are some fun activities I can do in the winter?

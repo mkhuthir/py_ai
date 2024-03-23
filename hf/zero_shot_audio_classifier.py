@@ -23,7 +23,8 @@ print (audio_sample)
 
 zero_shot_classifier = pipeline(
     task="zero-shot-audio-classification",
-    model="laion/clap-htsat-unfused")
+    model="laion/clap-htsat-unfused",
+    device=0)
 
 zero_shot_classifier.feature_extractor.sampling_rate
 

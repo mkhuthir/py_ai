@@ -14,7 +14,8 @@ logging.set_verbosity_error()
 
 translator = pipeline(task="translation",
                       model="facebook/nllb-200-distilled-600M",
-                      torch_dtype=torch.bfloat16)
+                      torch_dtype=torch.bfloat16,
+                      device=0)
 
 text = """\
 My puppy is adorable, \
