@@ -52,3 +52,38 @@ print(cosine_similarity(vec_1,vec_2))
 print(cosine_similarity(vec_2,vec_3))
 print(cosine_similarity(vec_1,vec_3))
 
+in_1 = "The kids play in the park."
+in_2 = "The play was for kids in the park."
+
+in_pp_1 = ["kids", "play", "park"]
+in_pp_2 = ["play", "kids", "park"]
+
+embeddings_1 = [emb.values for emb in embedding_model.get_embeddings(in_pp_1)]
+
+import numpy as np
+emb_array_1 = np.stack(embeddings_1)
+print(emb_array_1.shape)
+
+embeddings_2 = [emb.values for emb in embedding_model.get_embeddings(in_pp_2)]
+emb_array_2 = np.stack(embeddings_2)
+print(emb_array_2.shape)
+
+emb_1_mean = emb_array_1.mean(axis = 0) 
+print(emb_1_mean.shape)
+
+emb_2_mean = emb_array_2.mean(axis = 0)
+
+print(emb_1_mean[:4])
+print(emb_2_mean[:4])
+
+print(in_1)
+print(in_2)
+
+embedding_1 = embedding_model.get_embeddings([in_1])
+embedding_2 = embedding_model.get_embeddings([in_2])
+
+vector_1 = embedding_1[0].values
+print(vector_1[:4])
+vector_2 = embedding_2[0].values
+print(vector_2[:4])
+
