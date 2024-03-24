@@ -9,12 +9,12 @@ print(a)
 
 # Create a Tensor with just zeros in a column
 b = torch.zeros(5)
-print("\n zeros in a column")
+print("\nZeros in a column")
 print(b)
 
 # Create a Tensor from data
 c = torch.tensor([1.0, 2.0, 3.0, 4.0, 5.0])
-print("\na Tensor from data")
+print("\nTensor from data")
 print(c)
 
 # Create a 2D Tensor with just zeros 
