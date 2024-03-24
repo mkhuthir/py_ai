@@ -48,3 +48,7 @@ vec_1 = [emb_1[0].values]
 vec_2 = [emb_2[0].values]
 vec_3 = [emb_3[0].values]
 
+print(cosine_similarity(vec_1,vec_2)) 
+print(cosine_similarity(vec_2,vec_3))
+print(cosine_similarity(vec_1,vec_3))
+
