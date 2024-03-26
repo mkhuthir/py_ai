@@ -17,7 +17,7 @@ dataset = load_dataset("librispeech_asr",
 example = next(iter(dataset))
 dataset_head = dataset.take(5)
 
-list(dataset_head)
-list(dataset_head)[2]
-
+print(list(dataset_head))
+print(list(dataset_head)[2])
 print(example)
+
