@@ -12,13 +12,13 @@ from datasets import load_dataset
 
 logging.set_verbosity_error()
 
-#dataset = load_dataset("librispeech_asr",
-#                       split="train.clean.100",
-#                       streaming=True,
-#                       trust_remote_code=True)
+dataset = load_dataset("librispeech_asr",
+                       split="train.clean.100",
+                       streaming=True,
+                       trust_remote_code=True)
 
-#example = next(iter(dataset))
-#dataset_head = dataset.take(5)
+example = next(iter(dataset))
+dataset_head = dataset.take(5)
 
 # print(list(dataset_head)[2])
 # print(example)
@@ -28,7 +28,7 @@ asr = pipeline(task="automatic-speech-recognition",
                device=0)
 
 print("asr sampling rate =",asr.feature_extractor.sampling_rate)
-#print("example sampling rate",example['audio']['sampling_rate'])
+print("example sampling rate",example['audio']['sampling_rate'])
 
-#asr(example["audio"]["array"])
-#print(example["text"])
+asr(example["audio"]["array"])
+print(example["text"])
