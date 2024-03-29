@@ -3,6 +3,9 @@
 # Muthanna Alwahash
 # Mar 2024
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
+
 from transformers import pipeline 
 from transformers.utils import logging
 from datasets import load_dataset
@@ -10,9 +13,7 @@ import soundfile as sf
 import numpy as np
 import librosa
 import io
-import os
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 logging.set_verbosity_error()
 
 asr = pipeline(task="automatic-speech-recognition",
@@ -39,9 +40,10 @@ audio_16KHz = librosa.resample(audio_mono,
                                orig_sr=sampling_rate,
                                target_sr=16000)
 
-print(asr(
-    audio_16KHz,
-    chunk_length_s=30, # 30 seconds
-    batch_size=4,
-    return_timestamps=True,
-)["chunks"])
+output=asr(
+            audio_16KHz,
+            chunk_length_s=30, # 30 seconds
+            batch_size=4,
+            return_timestamps=True)
+
+print("output text =",output["text"])
