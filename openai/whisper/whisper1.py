@@ -6,6 +6,6 @@
 import whisper
 
 model = whisper.load_model("base")
-result = model.transcribe("audio.mp3")
+result = model.transcribe("../../media/narration1.mp3")
 print(result["text"])
 
