@@ -3,6 +3,9 @@
 # Muthanna Alwahash
 # Mar 2024
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
+
 from transformers.utils import logging
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util
