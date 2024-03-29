@@ -7,6 +7,8 @@ from transformers import pipeline
 from transformers.utils import logging
 from datasets import load_dataset
 import soundfile as sf
+import numpy as np
+import librosa
 import io
 import os
 
@@ -19,7 +21,27 @@ asr = pipeline(task="automatic-speech-recognition",
 
 print("ASR sampling rate =",asr.feature_extractor.sampling_rate)
 
+# read audio file
 audio, sampling_rate = sf.read('../media/narration2.mp3')
-
 print("Audio sampling rate =",sampling_rate)
 print("Audio shape =",audio.shape)
+
+# transpose array to match librosa requirements 
+audio_transposed = np.transpose(audio)
+print("Audio transposed shape =",audio_transposed.shape)
+
+# change audio from stereo to mono
+audio_mono = librosa.to_mono(audio_transposed)
+print("Audio mono shape =",audio_mono.shape)
+
+# adjust audio sampling rate to match ASR sampling rate
+audio_16KHz = librosa.resample(audio_mono,
+                               orig_sr=sampling_rate,
+                               target_sr=16000)
+
+print(asr(
+    audio_16KHz,
+    chunk_length_s=30, # 30 seconds
+    batch_size=4,
+    return_timestamps=True,
+)["chunks"])
