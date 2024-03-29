@@ -8,3 +8,7 @@ soundfile
 librosa
 gradio
 tf-keras
+timm
+inflect
+phonemizer
+py-espeak-ng
