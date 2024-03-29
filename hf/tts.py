@@ -8,6 +8,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
 from transformers import pipeline 
 from transformers.utils import logging
+import sounddevice as sd
 
 logging.set_verbosity_error()
 
@@ -28,13 +29,11 @@ Good bye, my love.
 print(text)
 
 narrator = pipeline("text-to-speech",
-                    model="kakao-enterprise/vits-ljs",
+                    model="kakao-enterprise/vits-vctk",     # vits-ljs is another alternative
                     device=0)
 
 narrated_text = narrator(text)
+sd.play(narrated_text["audio"][0],narrated_text["sampling_rate"])
+sd.wait()
 
-from IPython.display import Audio as IPythonAudio
-
-IPythonAudio(narrated_text["audio"][0],
-             rate=narrated_text["sampling_rate"])
 
