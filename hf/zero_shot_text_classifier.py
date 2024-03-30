@@ -11,19 +11,17 @@ logging.set_verbosity_error()
 
 from transformers import pipeline, Conversation 
 
-zero_shot_classifier = pipeline(
-    "zero-shot-classification",
-    model="facebook/bart-large-mnli",
-    device=0)
+pipe = pipeline("zero-shot-classification",
+                model="facebook/bart-large-mnli",
+                device=0)
 
 sequence_to_classify = "one day I will see the world"
 candidate_labels = ['travel', 'cooking', 'dancing']
 
-classification = zero_shot_classifier(
-    sequence_to_classify,
-    candidate_labels,
-    multi_label=True)
+classification = pipe(sequence_to_classify,
+                      candidate_labels,
+                      multi_label=True)
 
-print(classification)
+
 print(classification['labels'])
 print(classification['scores'])

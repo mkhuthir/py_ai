@@ -40,3 +40,5 @@ output= pipe(audio_sample["audio"]["array"],
              candidate_labels=candidate_labels)
 
 print(output)
+
+
