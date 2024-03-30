@@ -16,8 +16,6 @@ PROJECT_ID = 'vertexaiproj-418218'
 REGION = 'us-central1'
 #----------------------------------- 
 
-#----------------------------------- 
-
 import numpy as np
 import vertexai
 from vertexai.language_models import TextEmbeddingModel
@@ -60,7 +58,7 @@ new_values = PCA_model.transform(embeddings_array)
 print("Shape: " + str(new_values.shape))
 print(new_values)
 
-# Create scatter plot
+#-------------- Create scatter plot
 x_values = new_values[:,0]
 y_values = new_values[:,1]
 labels = in_list
