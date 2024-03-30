@@ -7,3 +7,4 @@ matplotlib
 mplcursors
 numpy
 sklearn
+pandas
