@@ -20,13 +20,15 @@ import vertexai
 from vertexai.language_models import TextEmbeddingModel
 
 from sklearn.decomposition import PCA
+from concurrent.futures import ThreadPoolExecutor
+from tqdm.auto import tqdm
 import matplotlib.pyplot as plt
 import mplcursors
 import numpy as np
 import pandas as pd
+import math
 import time
-from concurrent.futures import ThreadPoolExecutor
-from tqdm.auto import tqdm
+import functools
 
 # initialize vertex
 vertexai.init(project = PROJECT_ID, 
@@ -82,7 +84,8 @@ def encode_text_to_embedding_batched(sentences, api_calls_per_second = 0.33, bat
         np.stack([embedding for embedding in embeddings_list if embedding is not None])
     )
     return embeddings_list_successful
-
+#------------
+# embed the full list
 so_questions = so_df.input_text.tolist()
 question_embeddings = encode_text_to_embedding_batched(
                             sentences=so_questions,
