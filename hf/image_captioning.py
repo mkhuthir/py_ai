@@ -9,10 +9,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 from transformers.utils import logging
 logging.set_verbosity_error()
 
-from transformers import BlipForImageTextRetrieval, AutoProcessor
+from transformers import BlipForConditionalGeneration, AutoProcessor
 from PIL import Image
 
-model = BlipForImageTextRetrieval.from_pretrained("Salesforce/blip-image-captioning-base")
+model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 processor = AutoProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 
 image = Image.open("../media/hf_friends.jpg")
