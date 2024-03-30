@@ -32,7 +32,5 @@ itm_scores = model(**inputs)[0]
 print(itm_scores)
 
 itm_score = torch.nn.functional.softmax(itm_scores,dim=1)
-
 print(itm_score)
-
 print(f"""The image and text are matched with a probability of {itm_score[0][1]:.4f}""")
