@@ -3,15 +3,13 @@
 # Muthanna Alwahash
 # Mar 2024
 
-
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import pipeline, Conversation 
 from transformers.utils import logging
-import gc
-
 logging.set_verbosity_error()
+
+from transformers import pipeline, Conversation 
 
 zero_shot_classifier = pipeline(
     "zero-shot-classification",
@@ -29,7 +27,3 @@ classification = zero_shot_classifier(
 print(classification)
 print(classification['labels'])
 print(classification['scores'])
-
-# free memory and garbage collect
-del zero_shot_classifier
-gc.collect()

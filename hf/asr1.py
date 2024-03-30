@@ -4,14 +4,13 @@
 # Mar 2024
 
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import pipeline 
 from transformers.utils import logging
-from datasets import load_dataset
-
 logging.set_verbosity_error()
 
+from transformers import pipeline 
+from datasets import load_dataset
 
 asr = pipeline(task="automatic-speech-recognition",
                model="distil-whisper/distil-small.en",

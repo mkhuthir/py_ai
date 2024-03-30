@@ -6,15 +6,15 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import pipeline 
 from transformers.utils import logging
+logging.set_verbosity_error()
+
+from transformers import pipeline 
 from datasets import load_dataset
 import soundfile as sf
 import numpy as np
 import librosa
 import io
-
-logging.set_verbosity_error()
 
 asr = pipeline(task="automatic-speech-recognition",
                model="distil-whisper/distil-small.en",

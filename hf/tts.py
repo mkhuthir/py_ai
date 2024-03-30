@@ -6,11 +6,11 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import pipeline 
 from transformers.utils import logging
-import sounddevice as sd
-
 logging.set_verbosity_error()
+
+from transformers import pipeline 
+import sounddevice as sd
 
 text = """
 They run. They laugh. I see the glow shining on their eyes. Not like hers. She seems distant, \

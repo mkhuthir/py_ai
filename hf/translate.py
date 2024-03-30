@@ -6,12 +6,11 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import pipeline 
 from transformers.utils import logging
-import torch
-import gc
-
 logging.set_verbosity_error()
+
+from transformers import pipeline 
+import torch
 
 translator = pipeline(task="translation",
                       model="facebook/nllb-200-distilled-600M",
@@ -30,7 +29,3 @@ text_translated = translator(text,
                              tgt_lang="arz_Arab")
 
 print (text_translated)
-
-# free memory and garbage collect
-del translator
-gc.collect()

@@ -6,12 +6,11 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import pipeline 
 from transformers.utils import logging
-import torch
-import gc
-
 logging.set_verbosity_error()
+
+from transformers import pipeline 
+import torch
 
 summarizer = pipeline(task="summarization",
                       model="facebook/bart-large-cnn",
@@ -32,7 +31,3 @@ summary = summarizer(text,
                      max_length=100)
 
 print(summary)
-
-# free memory and garbage collect
-del summarizer
-gc.collect()

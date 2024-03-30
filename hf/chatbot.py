@@ -6,12 +6,11 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import Conversation
-from transformers import pipeline
 from transformers.utils import logging
-import gc
-
 logging.set_verbosity_error()
+
+from transformers import pipeline 
+from transformers import Conversation
 
 chatbot = pipeline(task="conversational",
                    model="facebook/blenderbot-400M-distill",
@@ -39,7 +38,3 @@ print(conversation)
 
 conversation = chatbot(conversation)
 print(conversation)
-
-# free memory and garbage collect
-del chatbot
-gc.collect()

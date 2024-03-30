@@ -7,11 +7,10 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
 from transformers.utils import logging
+logging.set_verbosity_error()
+
 from sentence_transformers import SentenceTransformer
 from sentence_transformers import util
-import gc
-
-logging.set_verbosity_error()
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
@@ -36,7 +35,3 @@ for i in range(len(sentences1)):
     print("{} \t\t {} \t\t Score: {:.4f}".format(sentences1[i],
                                                  sentences2[i],
                                                  cosine_scores[i][i]))
-    
-# free memory and garbage collect
-del model
-gc.collect()

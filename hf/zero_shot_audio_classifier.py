@@ -6,12 +6,10 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' # set tensorflow logs level
 
-from transformers import pipeline 
 from transformers.utils import logging
-import gc
-
 logging.set_verbosity_error()
 
+from transformers import pipeline 
 from datasets import load_dataset, load_from_disk
 
 # This dataset is a collection of different sounds of 5 seconds
@@ -56,9 +54,3 @@ candidate_labels = ["Sound of a child crying",
 
 zero_shot_classifier(audio_sample["audio"]["array"],
                      candidate_labels=candidate_labels)
-
-
-
-# free memory and garbage collect
-# del xxxx
-gc.collect()
