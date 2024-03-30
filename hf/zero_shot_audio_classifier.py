@@ -17,6 +17,7 @@ from datasets import load_dataset, Audio
 dataset = load_dataset("ashraq/esc50",
                         split="train[0:1]")
 
+# change the sampling rate to match classifier sampling rate
 dataset = dataset.cast_column("audio",
                               Audio(sampling_rate=48_000))
 
