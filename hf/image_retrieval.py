@@ -19,7 +19,7 @@ processor = AutoProcessor.from_pretrained("Salesforce/blip-itm-base-coco")
 
 img_url = 'https://storage.googleapis.com/sfr-vision-language-research/BLIP/demo.jpg'
 raw_image =  Image.open(requests.get(img_url, stream=True).raw).convert('RGB')
-raw_image.show
+raw_image.show()
 
 text = "an image of a woman and a dog on the beach"
 

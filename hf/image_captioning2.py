@@ -17,7 +17,7 @@ pipe = pipeline("image-to-text",
                 device=0)
 
 image = Image.open("../media/kittens.jpeg")
-image.show
+image.show()
 
 output=pipe(image)
 print(output[0]['generated_text'])

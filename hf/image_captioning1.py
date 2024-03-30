@@ -16,7 +16,7 @@ model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-capt
 processor = AutoProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 
 image = Image.open("../media/hf_friends.jpg")
-image.show
+image.show()
 
 # Conditional Image Captioning
 print("Conditional Image Captioning")
