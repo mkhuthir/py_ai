@@ -16,12 +16,13 @@ PROJECT_ID = 'vertexaiproj-418218'
 REGION = 'us-central1'
 #----------------------------------- 
 
-import numpy as np
 import vertexai
 from vertexai.language_models import TextEmbeddingModel
+
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import mplcursors
+import numpy as np
 
 # initialize vertex
 vertexai.init(project = PROJECT_ID, 
