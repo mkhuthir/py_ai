@@ -8,3 +8,4 @@ mplcursors
 numpy
 sklearn
 pandas
+pickle
