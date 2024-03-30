@@ -5,31 +5,24 @@
 from google.auth.transport.requests import Request
 from google.oauth2.service_account import Credentials
 
-# Path to your service account key file
-key_path = '../../vertexaiproj-418218-cf52d0c8ffb4.json' #Path to the json key associated with your service account from google cloud
-
-# Create credentials object
-
-credentials = Credentials.from_service_account_file(
-    key_path,
-    scopes=['https://www.googleapis.com/auth/cloud-platform'])
-
+#--------- Authenticate to Vertex AI
+key_path = '/home/mkhuthir/apps/vertexaiproj-418218-cf52d0c8ffb4.json'
+credentials = Credentials.from_service_account_file(key_path,
+                                                    scopes=['https://www.googleapis.com/auth/cloud-platform'])
 if credentials.expired:
     credentials.refresh(Request())
 
-
 PROJECT_ID = 'vertexaiproj-418218'
 REGION = 'us-central1'
+#----------------------------------- 
 
 import vertexai
-import vertexai
+from vertexai.language_models import TextEmbeddingModel
 
 # initialize vertex
 vertexai.init(project = PROJECT_ID, 
               location = REGION, 
               credentials = credentials)
-
-from vertexai.language_models import TextEmbeddingModel
 
 embedding_model = TextEmbeddingModel.from_pretrained(
     "textembedding-gecko@001")
@@ -38,6 +31,7 @@ embedding = embedding_model.get_embeddings(
     ["life"])
 
 vector = embedding[0].values
+print("embedding for 'life'")
 print(f"Length = {len(vector)}")
 print(vector[:10])
 
@@ -45,6 +39,7 @@ embedding = embedding_model.get_embeddings(
     ["What is the meaning of life?"])
 
 vector = embedding[0].values
+print("embedding for 'What is the meaning of life?'")
 print(f"Length = {len(vector)}")
 print(vector[:10])
 
@@ -66,9 +61,9 @@ vec_1 = [emb_1[0].values]
 vec_2 = [emb_2[0].values]
 vec_3 = [emb_3[0].values]
 
-print(cosine_similarity(vec_1,vec_2)) 
-print(cosine_similarity(vec_2,vec_3))
-print(cosine_similarity(vec_1,vec_3))
+print("Similarity with 'What is the meaning of life?' ",cosine_similarity(vec_1,vec_2)) 
+print("Similarity with 'How does one spend their time well on Earth?' ",cosine_similarity(vec_2,vec_3))
+print("Similarity with 'Would you like a salad?' ",cosine_similarity(vec_1,vec_3))
 
 in_1 = "The kids play in the park."
 in_2 = "The play was for kids in the park."
