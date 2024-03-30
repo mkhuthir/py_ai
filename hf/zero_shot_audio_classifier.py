@@ -10,47 +10,32 @@ from transformers.utils import logging
 logging.set_verbosity_error()
 
 from transformers import pipeline 
-from datasets import load_dataset, load_from_disk
+from datasets import load_dataset, Audio
 
 # This dataset is a collection of different sounds of 5 seconds
-# dataset = load_dataset("ashraq/esc50",
-#                       split="train[0:10]")
-dataset = load_from_disk("/ashraq/esc50/train")
+# will take first sample
+dataset = load_dataset("ashraq/esc50",
+                        split="train[0:1]")
 
-
-audio_sample = dataset[0]
-
-print (audio_sample)
-
-zero_shot_classifier = pipeline(
-    task="zero-shot-audio-classification",
-    model="laion/clap-htsat-unfused",
-    device=0)
-
-zero_shot_classifier.feature_extractor.sampling_rate
-
-print(audio_sample["audio"]["sampling_rate"])
-
-from datasets import Audio
-
-dataset = dataset.cast_column(
-    "audio",
-     Audio(sampling_rate=48_000))
+dataset = dataset.cast_column("audio",
+                              Audio(sampling_rate=48_000))
 
 audio_sample = dataset[0]
+print("audio sample rate = ",audio_sample["audio"]["sampling_rate"])
 
-print(audio_sample)
+pipe = pipeline(task="zero-shot-audio-classification",
+                model="laion/clap-htsat-unfused",
+                device=0)
 
-candidate_labels = ["Sound of a dog",
-                    "Sound of vacuum cleaner"]
-
-zero_shot_classifier(audio_sample["audio"]["array"],
-                     candidate_labels=candidate_labels)
+print("classifier sample rate = ",pipe.feature_extractor.sampling_rate)
 
 candidate_labels = ["Sound of a child crying",
                     "Sound of vacuum cleaner",
+                    "Sound of a dog",
                     "Sound of a bird singing",
                     "Sound of an airplane"]
 
-zero_shot_classifier(audio_sample["audio"]["array"],
-                     candidate_labels=candidate_labels)
+output= pipe(audio_sample["audio"]["array"],
+             candidate_labels=candidate_labels)
+
+print(output)
