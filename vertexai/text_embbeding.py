@@ -2,11 +2,29 @@
 
 # Muthanna Alwahash
 # Mar 2024
+from google.auth.transport.requests import Request
+from google.oauth2.service_account import Credentials
 
-PROJECT_ID = 'Muth1'
+# Path to your service account key file
+key_path = '../../vertexaiproj-418218-cf52d0c8ffb4.json' #Path to the json key associated with your service account from google cloud
+
+# Create credentials object
+
+credentials = Credentials.from_service_account_file(
+    key_path,
+    scopes=['https://www.googleapis.com/auth/cloud-platform'])
+
+if credentials.expired:
+    credentials.refresh(Request())
+
+
+PROJECT_ID = 'vertexaiproj-418218'
 REGION = 'us-central1'
 
 import vertexai
+import vertexai
+
+# initialize vertex
 vertexai.init(project = PROJECT_ID, 
               location = REGION, 
               credentials = credentials)
