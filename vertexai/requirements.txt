@@ -1,3 +1,6 @@
 # Google AI
 tensorflow[and-cuda]		# Google Tensorflow with NVIDIA CUDA support
 google-cloud-aiplatform		# Google Cloud AI
+
+# Required
+matplotlib
