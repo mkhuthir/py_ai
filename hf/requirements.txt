@@ -13,3 +13,4 @@ timm
 inflect
 phonemizer
 py-espeak-ng
+sounddevice
