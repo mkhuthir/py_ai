@@ -1,9 +1,10 @@
 #! /usr/bin/python3
-
 # Muthanna Alwahash
 # Mar 2024
+
 from google.auth.transport.requests import Request
 from google.oauth2.service_account import Credentials
+import vertexai
 
 #--------- Authenticate to Vertex AI
 key_path = '/home/mkhuthir/apps/vertexaiproj-418218-cf52d0c8ffb4.json'
@@ -14,10 +15,16 @@ if credentials.expired:
 
 PROJECT_ID = 'vertexaiproj-418218'
 REGION = 'us-central1'
-#----------------------------------- 
 
-import vertexai
+# initialize vertex
+vertexai.init(project = PROJECT_ID, 
+              location = REGION, 
+              credentials = credentials)
+#----------------------------------- 
+# select model
 from vertexai.language_models import TextEmbeddingModel
+model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
+#----------------------------------- 
 
 from sklearn.decomposition import PCA
 from concurrent.futures import ThreadPoolExecutor
@@ -30,15 +37,9 @@ import math
 import time
 import functools
 
-# initialize vertex
-vertexai.init(project = PROJECT_ID, 
-              location = REGION, 
-              credentials = credentials)
 # load the stack overflow dataframe from csv file
 so_df = pd.read_csv('../media/so_database_app.csv')
 print(so_df)
-
-model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
 
 #------------ Generator function to yield batches of sentences
 def generate_batches(sentences, batch_size = 5):
