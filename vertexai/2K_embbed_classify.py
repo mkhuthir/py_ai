@@ -35,3 +35,18 @@ y_pred = clf.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
 
+# classify
+# choose a number i between 0 and 1999
+i = 2
+label = so_df.loc[i,'category']
+question = so_df.loc[i,'input_text']
+
+# get the embedding of this question and predict its category
+question_embedding = model.get_embeddings([question])[0].values
+pred = clf.predict([question_embedding])
+
+print(f"For question {i}, the prediction is `{pred[0]}`")
+print(f"The actual label is `{label}`")
+print("The question text is:")
+print("-"*50)
+print(question)
