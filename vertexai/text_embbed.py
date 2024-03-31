@@ -23,10 +23,10 @@ from vertexai.language_models import TextEmbeddingModel
 vertexai.init(project = PROJECT_ID, 
               location = REGION, 
               credentials = credentials)
+# select model
+embedding_model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
 
-embedding_model = TextEmbeddingModel.from_pretrained(
-    "textembedding-gecko@001")
-
+#----------------------------------- 
 embedding = embedding_model.get_embeddings(
     ["life"])
 
