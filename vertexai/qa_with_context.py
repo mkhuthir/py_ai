@@ -48,19 +48,21 @@ so_database['embeddings'] = question_embeddings.tolist()
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
-# embed the query
+# the query
 query = ['How to concat dataframes pandas']
 print(f"\nquery:\n {query[0]}\n")
+
+# embed the query
 query_embedding = embedding_model.get_embeddings(query)[0].values
 
 # compare embeddings
 cos_sim_array = cosine_similarity([query_embedding],
                                   list(so_database.embeddings.values))
 
-# find the max match
+# find the max semantic match
 index_doc_cosine = np.argmax(cos_sim_array)
 
-# build prompt
+# build prompt using the match as a context
 context = "Question: " + so_database.input_text[index_doc_cosine] +\
 "\n Answer: " + so_database.output_text[index_doc_cosine]
 
@@ -76,6 +78,7 @@ prompt = f"""Here is the context: {context}
 
 temperature = 0.2
 
+# get the response
 response = generation_model.predict(prompt = prompt,
                                     temperature = temperature,
                                     max_output_tokens = 1024)
