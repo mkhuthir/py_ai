@@ -2,19 +2,7 @@
 
 # Muthanna Alwahash
 # Mar 2024
-from google.auth.transport.requests import Request
-from google.oauth2.service_account import Credentials
 
-#--------- Authenticate to Vertex AI
-key_path = '/home/mkhuthir/apps/vertexaiproj-418218-cf52d0c8ffb4.json'
-credentials = Credentials.from_service_account_file(key_path,
-                                                    scopes=['https://www.googleapis.com/auth/cloud-platform'])
-if credentials.expired:
-    credentials.refresh(Request())
-
-PROJECT_ID = 'vertexaiproj-418218'
-REGION = 'us-central1'
-#----------------------------------- 
 import pandas as pd
 import pickle
 from sklearn.cluster import KMeans
@@ -22,18 +10,22 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import mplcursors
 
+# read data from csv
 so_df = pd.read_csv('../media/so_database_app.csv')
 print(so_df.head())
 
+# read embeddings from pickle file
 with open('../media/question_embeddings_app.pkl', 'rb') as file:
     question_embeddings = pickle.load(file)
 
 print("Shape: " + str(question_embeddings.shape))
 print(question_embeddings)
 
-# use only 1500 out of 2000
-clustering_dataset = question_embeddings[:1500]
+# use only 1000 out of 2000
+subset = 1000
+clustering_dataset = question_embeddings[:subset]
 
+# use KMeans to cluster the subset
 n_clusters = 2
 kmeans = KMeans(n_clusters=n_clusters, 
                 random_state=0, 
@@ -41,6 +33,9 @@ kmeans = KMeans(n_clusters=n_clusters,
 
 kmeans_labels = kmeans.labels_
 
+print(kmeans_labels)
+
+# Reduce embeddings using PCA from 768 to 2 dimensions for 2D visualization
 PCA_model = PCA(n_components=2)
 PCA_model.fit(clustering_dataset)
 new_values = PCA_model.transform(clustering_dataset)
@@ -48,7 +43,7 @@ new_values = PCA_model.transform(clustering_dataset)
 #-------------- Create scatter plot
 x_values = new_values[:,0]
 y_values = new_values[:,1]
-labels = so_df[:1500]
+labels = so_df[:subset]
 k_labels = kmeans_labels
 
 fig, ax = plt.subplots()
@@ -73,5 +68,5 @@ ax.set_ylabel('X_2')  # Add y-axis label
 def on_add(sel):
     sel.annotation.set_text(labels.category[sel.index])
     sel.annotation.get_bbox_patch().set(facecolor='white', alpha=0.95) # Set annotation's background color
-    sel.annotation.set_fontsize(14)  
+    sel.annotation.set_fontsize(10)  
 plt.show()

@@ -34,26 +34,26 @@ import functools
 vertexai.init(project = PROJECT_ID, 
               location = REGION, 
               credentials = credentials)
-# load data
+# load data from csv
 so_df = pd.read_csv('../media/so_database_app.csv')
 print(so_df)
 
 model = TextEmbeddingModel.from_pretrained("textembedding-gecko@001")
 
-#------------
-# Generator function to yield batches of sentences
+#------------ Generator function to yield batches of sentences
 def generate_batches(sentences, batch_size = 5):
     for i in range(0, len(sentences), batch_size):
         yield sentences[i : i + batch_size]
 
-#------------
+#------------ Embedding a sentence
 def encode_texts_to_embeddings(sentences):
     try:
         embeddings = model.get_embeddings(sentences)
         return [embedding.values for embedding in embeddings]
     except Exception:
         return [None for _ in range(len(sentences))]
-#------------
+    
+#------------ Embedding a batch of sentences at a specific api call rate
 def encode_text_to_embedding_batched(sentences, api_calls_per_second = 0.33, batch_size = 5):
     # Generates batches and calls embedding API
     
@@ -85,7 +85,7 @@ def encode_text_to_embedding_batched(sentences, api_calls_per_second = 0.33, bat
     )
     return embeddings_list_successful
 #------------
-# embed the full list
+# embed the full list of 2000 entries
 so_questions = so_df.input_text.tolist()
 question_embeddings = encode_text_to_embedding_batched(
                             sentences=so_questions,

@@ -79,5 +79,5 @@ ax.set_ylabel('X_2')  # Add y-axis label
 def on_add(sel):
     sel.annotation.set_text(labels[sel.index])
     sel.annotation.get_bbox_patch().set(facecolor='white', alpha=0.5) # Set annotation's background color
-    sel.annotation.set_fontsize(12) 
+    sel.annotation.set_fontsize(10) 
 plt.show()
