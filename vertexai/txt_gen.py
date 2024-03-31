@@ -31,8 +31,8 @@ model = TextGenerationModel.from_pretrained("text-bison@001")
 prompt = "I'm a high school student. \
 Recommend me a programming activity to improve my skills."
 
-output = model.predict(prompt=prompt).text
-print(f"\nprompt:\n{prompt}\n\nanswer:\n{output}\n")
+response = model.predict(prompt=prompt).text
+print(f"\nprompt:\n{prompt}\n\nresponse:\n{response}\n")
 
 #----------------------------------- 
 prompt = """I'm a high school student. \
@@ -41,8 +41,8 @@ a) learn Python
 b) learn Javascript
 c) learn Fortran
 """
-output = model.predict(prompt=prompt).text
-print(f"\nprompt:\n{prompt}\n\nanswer:\n{output}\n")
+response = model.predict(prompt=prompt).text
+print(f"\nprompt:\n{prompt}\n\nresponse:\n{response}\n")
 
 #----------------------------------- 
 prompt = """ A bright and promising wildlife biologist \
@@ -64,7 +64,7 @@ and marine biologist Siri Teller (Freya Johansson).
 Extract the characters, their jobs \
 and the actors who played them from the above message as a table
 """
-output = model.predict(prompt=prompt).text
-print(f"\nprompt:\n{prompt}\n\nanswer:\n{output}\n")
+response = model.predict(prompt=prompt).text
+print(f"\nprompt:\n{prompt}\n\nresponse:\n{response}\n")
 
 #----------------------------------- 
