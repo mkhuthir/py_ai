@@ -34,7 +34,7 @@ import functools
 vertexai.init(project = PROJECT_ID, 
               location = REGION, 
               credentials = credentials)
-# load data from csv
+# load the stack overflow dataframe from csv file
 so_df = pd.read_csv('../media/so_database_app.csv')
 print(so_df)
 

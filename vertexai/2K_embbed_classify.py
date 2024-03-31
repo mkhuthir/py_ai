@@ -41,7 +41,7 @@ with open('../media/question_embeddings_app.pkl', 'rb') as file:
 X = question_embeddings
 print("embeddings data shape (X) = ",X.shape)
 
-# load the dataset from csv file
+# load the stack overflow dataframe from csv file
 so_df = pd.read_csv('../media/so_database_app.csv')
 y = so_df['category'].values
 print("category data shape (y) = ",y.shape)

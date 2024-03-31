@@ -10,7 +10,7 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import mplcursors
 
-# read data from csv
+# load the stack overflow dataframe from csv file
 so_df = pd.read_csv('../media/so_database_app.csv')
 print(so_df.head())
 
