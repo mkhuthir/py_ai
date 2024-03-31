@@ -14,6 +14,7 @@ from PIL import Image
 
 pipe = pipeline("image-to-text",
                 model="Salesforce/blip-image-captioning-base",
+                max_new_tokens=20,
                 device=0)
 
 image = Image.open("../media/kittens.jpeg")
