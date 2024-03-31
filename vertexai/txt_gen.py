@@ -45,3 +45,26 @@ output = model.predict(prompt=prompt).text
 print(f"\nprompt:\n{prompt}\n\nanswer:\n{output}\n")
 
 #----------------------------------- 
+prompt = """ A bright and promising wildlife biologist \
+named Jesse Plank (Amara Patel) is determined to make her \
+mark on the world. 
+Jesse moves to Texas for what she believes is her dream job, 
+only to discover a dark secret that will make \
+her question everything. 
+In the new lab she quickly befriends the outgoing \
+lab tech named Maya Jones (Chloe Nguyen), 
+and the lab director Sam Porter (Fredrik Johansson). 
+Together the trio work long hours on their research \
+in a hope to change the world for good. 
+Along the way they meet the comical \
+Brenna Ode (Eleanor Garcia) who is a marketing lead \
+at the research institute, 
+and marine biologist Siri Teller (Freya Johansson).
+
+Extract the characters, their jobs \
+and the actors who played them from the above message as a table
+"""
+output = model.predict(prompt=prompt).text
+print(f"\nprompt:\n{prompt}\n\nanswer:\n{output}\n")
+
+#----------------------------------- 
