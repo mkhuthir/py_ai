@@ -65,6 +65,12 @@ Extract the characters, their jobs \
 and the actors who played them from the above message as a table
 """
 response = model.predict(prompt=prompt).text
-print(f"\nprompt:\n{prompt}\n\nresponse:\n{response}\n")
+
+# Show response in MarkDown
+from rich.console import Console
+from rich.markdown import Markdown
+console = Console()
+md = Markdown(response)
+console.print(md)
 
 #----------------------------------- 
