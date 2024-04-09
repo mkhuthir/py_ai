@@ -8,7 +8,7 @@ import time
 
 timer_start = time.time()
 #------------------------
-embedding = ollama.embeddings(model='mxbai-embed-large',
+embedding = ollama.embeddings(model='nomic-embed-text',
                               prompt='Llamas are members of the camelid family')
 #------------------------
 timer_end = time.time()
